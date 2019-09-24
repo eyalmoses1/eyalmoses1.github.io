@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Quiz</title>
+<style>
+div#test{ border:#5AB029 3px solid; padding:10px 40px 40px 40px; background-color:#E5FCE3; width:50%;}
+</style>
+<script type="text/javascript">
+// pos is position of where the user in the test or which question they're up to
+var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, correct = 0;
+// this is a multidimensional array with 4 inner array elements with 5 elements inside them
+// if you don't want answers viewable in the code, then you should use PHP and mySQL database
+
+
+var questions = [
+  ["&#1502;&#1488;&#1497;&#1503; &#1512;&#1493;&#1506;&#1497;", 
+  "&#1508;&#1468;&#1493;&#1465;&#1512;&#1456;&#1496;&#1493;&#1468;&#1490;&#1463;&#1500;",
+  "&#1493;&#1460;&#1497;&#1512;&#1456;&#1490;&#1460;'&#1497;&#1504;&#1460;&#1497;&#1463;&#1492;", 
+  "&#1488;&#1464;&#1512;&#1456;&#1500;&#1460;&#1497;&#1504;&#1456;&#1496;&#1456;&#1493;&#1465;&#1503;",
+  "A"],
+  
+  ["&#1488;&#1497;&#1508;&#1492; &#1489;&#1503; &#1490;&#1512;",
+   "&#1497;&#1460;&#1513;&#1474;&#1456;&#1512;&#1464;&#1488;&#1461;&#1500;",
+  "&#1488;&#1464;&#1512;&#1456;&#1500;&#1460;&#1497;&#1504;&#1456;&#1496;&#1456;&#1493;&#1465;&#1503;",
+  "&#1508;&#1468;&#1493;&#1465;&#1512;&#1456;&#1496;&#1493;&#1468;&#1490;&#1463;&#1500;",
+  "B"],
+  
+  ["&#1502;&#1497; &#1502;&#1491;&#1489;&#1512; &#1508;&#1493;&#1512;&#1496;&#1493;&#1490;&#1494;&#1497;&#1514;",
+  "&#1489;&#1468;&#1462;&#1503;", 
+  "&#1512;&#1493;&#1465;&#1506;&#1460;&#1497;", 
+  "&#1497;&#1460;&#1513;&#1474;&#1456;&#1512;&#1464;&#1488;&#1461;&#1500;",
+  "C"],
+  
+  ["&#1502;&#1492; &#1506;&#1493;&#1513;&#1492; &#1489;&#1503; &#1489;&#1489;&#1497;&#1514; &#1492;&#1505;&#1508;&#1512; &#1500;&#1513;&#1508;&#1493;&#1514; &#1489;&#1488;&#1512;&#1500;&#1497;&#1504;&#1490;&#1496;&#1493;&#1503;",
+  "&#1500;&#1493;&#1465;&#1502;&#1461;&#1491",
+  "&#1502;&#1456;&#1491;&#1463;&#1489;&#1468;&#1461;&#1512;",
+  "&#1489;&#1468;&#1462;&#1503;",
+  "A"],
+  
+   ["&#1502;&#1497; &#1502;&#1491;&#1489;&#1512; &#1506;&#1489;&#1512;&#1497;&#1514;?",
+  "&#1489;&#1468;&#1462;&#1503;",
+  "&#1497;&#1460;&#1513;&#1474;&#1456;&#1512;&#1464;&#1488;&#1461;&#1500;",
+   "&#1502;&#1456;&#1491;&#1463;&#1489;&#1468;&#1461;&#1512;",
+  "B"
+  ],
+
+  ];
+
+
+//
+//var questions = [
+//  ["What is 36 + 42", "64", "78", "76", "B"],
+//  ["What is 7 x 4?", "21", "27", "28", "C"],
+//  ["What is 16 / 4?", "4", "6", "3", "A"],
+//  ["What is 8 x 12?", "88", "112", "96", "C"]
+//  ];
+// this get function is short for the getElementById function  
+function get(x){
+  return document.getElementById(x);
+}
+function renderQuestion(){
+  test = get("test");
+  if(pos >= questions.length){
+    test.innerHTML = "<h2>You got "+correct+" of "+questions.length+" questions correct</h2>";
+    get("test_status").innerHTML = "Test completed";
+    // resets the variable to allow users to restart the test
+    pos = 0;
+    correct = 0;
+    // stops rest of renderQuestion function running when test is completed
+    return false;
+  }
+  get("test_status").innerHTML = "Question "+(pos+1)+" of "+questions.length;
+  question = questions[pos][0];
+  chA = questions[pos][1];
+  chB = questions[pos][2];
+  chC = questions[pos][3];
+  test.innerHTML = "<h3>"+question+"</h3>";
+  // the += appends to the data we started on the line above
+  test.innerHTML += "<input type='radio' name='choices' value='A'> "+chA+"<br>";
+  test.innerHTML += "<input type='radio' name='choices' value='B'> "+chB+"<br>";
+  test.innerHTML += "<input type='radio' name='choices' value='C'> "+chC+"<br><br>";
+  test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
+}
+function checkAnswer(){
+  // use getElementsByName because we have an array which it will loop through
+  choices = document.getElementsByName("choices");
+  for(var i=0; i<choices.length; i++){
+    if(choices[i].checked){
+      choice = choices[i].value;
+    }
+  }
+  // checks if answer matches the correct choice
+  if(choice == questions[pos][4]){
+    //each time there is a correct answer this value increases
+    correct++;
+  }
+  // changes position of which character user is on
+  pos++;
+  // then the renderQuestion function runs again to go to next question
+  renderQuestion();
+}
+window.addEventListener("load", renderQuestion, false);
+</script>
+</head>
+<body>
+<h2 id="test_status"></h2>
+<div id="test"></div>
+</body>
+</html>
