@@ -22,10 +22,73 @@ href="Demo_phase%20one%20conversation2_files/editdata.mso">
 <audio id="myAudio">
   <source src="Recording4.m4a" type="audio/ogg">
  </audio>
+<audio id="AudioWord1">
+  <source src="Recording0.m4a" type="audio/ogg">
+ </audio>
+<audio id="AudioWord2">
+  <source src="Recording1.m4a" type="audio/ogg">
+ </audio>
+<audio id="AudioWord3">
+  <source src="Recording2.m4a" type="audio/ogg">
+ </audio>
 
 <script>
 
 var x = document.getElementById("myAudio"); 
+var x1 = document.getElementById("AudioWord1"); 
+var x2 = document.getElementById("AudioWord2"); 
+var x3 = document.getElementById("AudioWord3"); 
+var wordId=0;
+
+function hearWord() {
+wordId++;
+if (wordId>2)
+{wordId=0;}
+
+if ( wordId==0)
+  {x1.play();} 
+ if ( wordId==1)
+  {x2.play();} 
+if ( wordId==2)
+  {x3.play();} 
+} 
+
+function checkHearResult() { 
+      document.getElementById("tab1").style='font-size:22.0pt;font-family:"Times New Roman",serif;mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-language HE;background:white;';
+     document.getElementById("tab2").style='font-size:22.0pt;font-family:"Times New Roman",serif;mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-language HE;background:white;';
+     document.getElementById("tab3").style='font-size:22.0pt;font-family:"Times New Roman",serif;mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-language HE;background:white;';
+  if ( wordId==0)
+  {
+      document.getElementById("tab1").style='font-size:22.0pt;font-family:"Times New Roman",serif;mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-language HE;background:yellow;';
+  }  
+   if ( wordId==1)
+  {
+      document.getElementById("tab2").style='font-size:22.0pt;font-family:"Times New Roman",serif;mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-language HE;background:yellow;';
+  }  
+   if ( wordId==2)
+  {
+      document.getElementById("tab3").style='font-size:22.0pt;font-family:"Times New Roman",serif;mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-language HE;background:yellow;';
+  }  
+
+} 
+
+
+function checkTextresult()
+{
+var x0, text;
+x0 = document.getElementById("text1").value;
+
+if (x0=="Ron")
+{
+text = "This is correct";
+}
+else
+{
+text = "This is incorrect";
+}
+document.getElementById("text2").innerHTML = text;
+}
+
 
 function playAudio() { 
   x.play(); 
@@ -65,6 +128,8 @@ function launch(){
 }
 sleep(2000);
 launch();
+
+// var btn= document.getElementById("text1");
 
 
 
@@ -505,6 +570,13 @@ major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:major-bidi;
 mso-bidi-language:HE'>&#1502;&#1497; &#1502;&#1491;&#1489;&#1512;
 &#1506;&#1489;&#1512;&#1497;&#1514;?<o:p></o:p></span></p>
 
+<textarea id = "text1" rows="2" cols="30" style="font-size:16.0pt;" >
+Write your answer here (Ron)</textarea>
+
+ <button style="font-size:16.0pt;background-color:90FF33" onclick="checkTextresult()">click to check result<i class='fas fa-volume-up'></i></button>
+<span id="text2" style="font-size:16.0pt;">  </span>
+
+
 <div class=MsoNormal align=center dir=RTL style='margin-bottom:0in;margin-bottom:
 .0001pt;text-align:center;line-height:normal;direction:rtl;unicode-bidi:embed'><span
 dir=LTR style='font-size:20.0pt;font-family:"Times New Roman",serif;mso-ascii-theme-font:
@@ -522,6 +594,9 @@ major-bidi;mso-bidi-theme-font:major-bidi'>&#1514;&#1512;&#1490;&#1497;&#1500;
 
 <p class=MsoNormal dir=RTL style='margin-bottom:0in;margin-bottom:.0001pt;
 text-align:right;line-height:normal;direction:rtl;unicode-bidi:embed'><span
+
+
+
 lang=HE style='font-size:16.0pt;font-family:"Times New Roman",serif;mso-ascii-theme-font:
 major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:major-bidi'>&#1492;&#1511;&#1513;&#1497;&#1489;&#1493;
 &#1500;&#1502;&#1493;&#1512;&#1492; &#1493;&#1505;&#1502;&#1504;&#1493;
@@ -531,6 +606,10 @@ major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:major-bidi'>&#149
 normal'><span style='font-size:16.0pt;font-family:"Times New Roman",serif;
 mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:
 major-bidi'>Circle the words read by your teacher:<o:p></o:p></span></p>
+
+<button style="font-size:16.0pt;background-color:90FF33" onclick="hearWord()">Play words<i class='fas fa-volume-up'></i></button>
+<button style="font-size:16.0pt;background-color:90FF33" onclick="checkHearResult()">Check result<i class='fas fa-volume-up'></i></button>
+
 
 <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=0
  style='width:6.75in;margin-left:-4.75pt;border-collapse:collapse;border:none;
@@ -570,8 +649,8 @@ major-bidi'>Circle the words read by your teacher:<o:p></o:p></span></p>
   border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
   solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoListParagraphCxSpLast dir=RTL style='margin-left:0in;mso-add-space:
-  auto;text-align:right;direction:rtl;unicode-bidi:embed'><span lang=HE
-  style='font-size:20.0pt;line-height:115%;font-family:"Times New Roman",serif;
+  auto;text-align:right;direction:rtl;unicode-bidi:embed'>
+  <span id="tab1" lang=HE style='font-size:20.0pt;line-height:115%;font-family:"Times New Roman",serif;
   mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:
   major-bidi;mso-bidi-language:HE'>&#1502;&#1488;&#1497;&#1503;
   &#1488;&#1514;&#1492;?<o:p></o:p></span></p>
@@ -597,7 +676,7 @@ major-bidi'>Circle the words read by your teacher:<o:p></o:p></span></p>
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoListParagraphCxSpMiddle dir=RTL style='margin-left:0in;
-  mso-add-space:auto;text-align:right;direction:rtl;unicode-bidi:embed'><span
+  mso-add-space:auto;text-align:right;direction:rtl;unicode-bidi:embed'><span id="tab2"
   lang=HE style='font-size:20.0pt;line-height:115%;font-family:"Times New Roman",serif;
   mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:
   major-bidi;mso-bidi-language:HE'>&#1502;&#1488;&#1497;&#1503; &#1488;&#1514;?</span>
@@ -732,7 +811,7 @@ major-bidi'>Circle the words read by your teacher:<o:p></o:p></span></p>
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoListParagraphCxSpMiddle dir=RTL style='margin-left:0in;
-  mso-add-space:auto;text-align:right;direction:rtl;unicode-bidi:embed'><span
+  mso-add-space:auto;text-align:right;direction:rtl;unicode-bidi:embed'><span id="tab3"
   lang=HE style='font-size:20.0pt;line-height:115%;font-family:"Times New Roman",serif;
   mso-ascii-theme-font:major-bidi;mso-hansi-theme-font:major-bidi;mso-bidi-theme-font:
   major-bidi;mso-bidi-language:HE'>&#1502;&#1497; &#1502;&#1491;&#1489;&#1512;?</span>
